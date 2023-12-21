@@ -1,0 +1,38 @@
+# test all ADD operands to the aluboard
+#  ./netgen.sh aluboard.mod -sim aluaddall.sim
+# takes about 12 mins to run
+
+module alueight
+
+set cycletime 200
+
+source lib.sim
+
+force SHR 0bX
+force IR 0xXXXX
+force _IR 0xXXXX
+force ADD 1
+force BONLY 0
+force IRFC 0
+
+for {set a 0} {$a < 256} {incr a} {
+    echo A $a
+    force A $a
+    for {set b 0} {$b < 256} {incr b} {
+        force B $b
+        for {set c 0} {$c < 2} {incr c} {
+            force CIN $c
+            run $cycletime
+            set expect [expr $a+$b+$c]
+            set expsum [FormatBin $expect 1 8]
+            set expcou [expr $expect >> 8]
+            set actsum [examine S]
+            set actcou [examine COUT]
+            if {"$actcou$actsum" != "$expcou$expsum"} {
+                echo ERROR adding $a $b $c
+                pause
+            }
+        }
+    }
+}
+echo SUCCESS

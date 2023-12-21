@@ -1,0 +1,19 @@
+# ./netgen.sh gpiotest.mod -sim gpiotest.sim
+
+module gpiotest
+
+force clk 0
+force irq 0
+force res 0
+force mq 0
+force dena 0
+force qena 0
+
+run 100
+
+examine md
+examine mword
+examine mread
+examine mwrite
+examine halt
+
