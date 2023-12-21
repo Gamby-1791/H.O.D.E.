@@ -31,4 +31,4 @@ HODE is a 16-bit transistor computer that uses a RaspberryPi for memory and IO. 
 - Guidance on programming and running tests using scripts in the `drivers` directory.
 - Advice on stacking order and LED board placement for optimal operation.
 
-Will update this with more detailed instructions and tips on each component and testing process.
+> Will update this with more detailed instructions and tips on each component and testing process.
